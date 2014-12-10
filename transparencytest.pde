@@ -69,7 +69,7 @@ void draw()
   // draw square to indicate current hue value   
      noFill();
      stroke(#555555);
-     strokeWeight(1);
+     strokeWeight(2);
      rect((width-activeBorder), (mouseColor - (activeBorder/2)), (activeBorder), (activeBorder));
   }
 
@@ -83,7 +83,7 @@ void draw()
      
      noFill();
      stroke(#555555);
-     strokeWeight(1);
+     strokeWeight(2);
      rect((width - activeBorder - mouseSaturation - (activeBorder/2)), (height-activeBorder), (activeBorder), (activeBorder));
   }
  
@@ -98,7 +98,7 @@ void draw()
      
      noFill();
      stroke(#555555);
-     strokeWeight(1);
+     strokeWeight(2);
      rect(0, (height - mouseBrightness - (activeBorder/2)), (activeBorder), (activeBorder));
   }
   
@@ -112,7 +112,7 @@ void draw()
      
      noFill();
      stroke(#555555);
-     strokeWeight(1);
+     strokeWeight(2);
      rect((mouseOpacity-(activeBorder/2)), 0, (activeBorder), (activeBorder));
 
   }
