@@ -20,7 +20,7 @@ int maxOpacity = 800;
 
 void setup() 
 {
-  size(700,700);
+  size(800,800);
   figure = loadImage("sketchfigurecopy.png");
   maxHue = height - activeBorder;
   maxSaturation = width - activeBorder;
