@@ -18,9 +18,10 @@ int maxSaturation = 800;
 int maxOpacity = 800;
 
 
+
 void setup() 
 {
-  size(800,800);
+  size(700,700);
   figure = loadImage("sketchfigurecopy.png");
   maxHue = height - activeBorder;
   maxSaturation = width - activeBorder;
@@ -35,8 +36,6 @@ void setup()
 
 void draw()
 {
-  
-
   
 // border around image  
   noStroke();
@@ -56,21 +55,17 @@ void draw()
   rect((width-activeBorder-frameSize), activeBorder, frameSize, height-2*activeBorder);
   
   
-  
+// draw image  
   image(figure, border, border, (width - (2*border)), (height - (2*border)));
   
-  // populate right hand side with hue values
+// populate right hand side with hue values
   for (gridY = 0; gridY < (height-activeBorder); gridY += stepY)
   {
      noStroke();
      fill(gridY, maxSaturation, maxBrightness, maxOpacity); 
      rect((width-activeBorder), gridY, activeBorder, stepY);
      
-  // draw square to indicate current hue value   
-     noFill();
-     stroke(#555555);
-     strokeWeight(2);
-     rect((width-activeBorder), (mouseColor - (activeBorder/2)), (activeBorder), (activeBorder));
+
   }
 
   // populate bottom row with saturation values
@@ -80,11 +75,8 @@ void draw()
      noStroke();
      fill(mouseColor, gridX, maxBrightness, maxOpacity); 
      rect((width - stepX - gridX), (height- activeBorder), stepX, activeBorder);
-     
-     noFill();
-     stroke(#555555);
-     strokeWeight(2);
-     rect((width - activeBorder - mouseSaturation - (activeBorder/2)), (height-activeBorder), (activeBorder), (activeBorder));
+
+
   }
  
   
@@ -96,10 +88,8 @@ void draw()
      fill(mouseColor, maxSaturation, gridY, maxOpacity); 
      rect(0, (height - gridY - stepY), activeBorder, stepY);
      
-     noFill();
-     stroke(#555555);
-     strokeWeight(2);
-     rect(0, (height - mouseBrightness - (activeBorder/2)), (activeBorder), (activeBorder));
+
+
   }
   
   // populate top side with opacity values
@@ -110,10 +100,23 @@ void draw()
      fill(mouseColor, (gridX), maxBrightness, maxOpacity); 
      rect(gridX, 0, stepX, activeBorder);
      
+     
+
+
+
+     // draw squares to indicate current hue, saturation, brightness, opacity values   
      noFill();
      stroke(#555555);
-     strokeWeight(2);
+     strokeWeight(1);
+     rect((width-activeBorder), (mouseColor - (activeBorder/2)), (activeBorder), (activeBorder));
+     rect((width - activeBorder - mouseSaturation - (activeBorder/2)), (height-activeBorder), (activeBorder), (activeBorder));
+     rect(0, (height - mouseBrightness - (activeBorder/2)), (activeBorder), (activeBorder));
      rect((mouseOpacity-(activeBorder/2)), 0, (activeBorder), (activeBorder));
+     fill(#555555);
+     text("h", (width-activeBorder +5), (mouseColor + 5));
+     text("s", (width-mouseSaturation-activeBorder-2), (height-activeBorder/2+2));
+     text("b", (5), (height-mouseBrightness + 5));
+     text("o", (mouseOpacity - 2), (activeBorder/2 +5));
 
   }
   
@@ -161,7 +164,7 @@ void keyPressed()
     saveFrame("transparencytest.jpg");
   }
 
-  if (key == '-')
+  if (key == '-' || key == '_')
   {
     if (brushSize <= 5)
     {
@@ -170,7 +173,7 @@ void keyPressed()
     else brushSize -= 5;
   }
   
-  if (key == '+')
+  if (key == '+'|| key == '=')
   {
     brushSize += 5;
   }
